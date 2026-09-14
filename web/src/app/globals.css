@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Core palette ─────────────────────────────────────────── */
+  --color-void: #07080B;
+  --color-ink: #0C0E14;
+  --color-surface: #12151D;
+  --color-elevated: #1A1E29;
+  --color-line: #232838;
+
+  --color-bone: #ECEEF4;
+  --color-mute: #7E8698;
+  --color-faint: #4A5164;
+
+  /* signature: electric lime + deep violet */
+  --color-volt: #CCFF33;
+  --color-volt-dim: #9BC41F;
+  --color-plasma: #6E4BFF;
+  --color-plasma-dim: #4B32B8;
+  --color-ember: #FF5C3D;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+@layer base {
+  * { border-color: var(--color-line); }
+
+  html {
+    background: var(--color-void);
+    color-scheme: dark;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background: var(--color-void);
+    color: var(--color-bone);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--color-volt); color: #000; }
+
+  /* honour reduced-motion everywhere */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@utility grain {
+  position: relative;
+}
+
+/* thin scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-void); }
+::-webkit-scrollbar-thumb { background: var(--color-line); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-faint); }
