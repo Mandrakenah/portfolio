@@ -9,9 +9,9 @@ import { cn } from '@/lib/utils'
 const SEEDS = [
   'I built',
   'The hardest part was',
-  'My program is an',
-  'I like',
-  'We normalised every',
+  'I care about the',
+  'Each migrated component',
+  'A model that never',
 ]
 
 const ORDER_META: Record<number, { label: string; cls: string; hint: string }> = {

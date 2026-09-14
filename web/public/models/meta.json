@@ -1,48 +1,48 @@
 {
-  "builtAt": "2026-09-08T20:36:58Z",
-  "buildSeconds": 0.1,
+  "builtAt": "2026-09-14T21:32:14Z",
+  "buildSeconds": 0.22,
   "artifacts": [
     {
       "name": "index.json",
-      "bytes": 51155,
-      "human": "50.0 KB"
+      "bytes": 57086,
+      "human": "55.7 KB"
     },
     {
       "name": "lm.json",
-      "bytes": 95931,
-      "human": "93.7 KB"
+      "bytes": 105286,
+      "human": "102.8 KB"
     },
     {
       "name": "space.json",
-      "bytes": 2265,
+      "bytes": 2284,
       "human": "2.2 KB"
     }
   ],
-  "totalBytes": 149351,
-  "totalHuman": "145.9 KB",
+  "totalBytes": 164656,
+  "totalHuman": "160.8 KB",
   "lm": {
-    "vocabSize": 877,
-    "bigramContexts": 876,
-    "trigramContexts": 1963,
-    "tokensSeen": 2570,
-    "perplexityHeldOut": 390.25,
-    "perplexityTrain": 3.72
+    "vocabSize": 941,
+    "bigramContexts": 940,
+    "trigramContexts": 2196,
+    "tokensSeen": 2881,
+    "perplexityHeldOut": 346.61,
+    "perplexityTrain": 3.8
   },
   "lmEval": {
-    "heldOutPerplexity": 390.25,
-    "trainPerplexity": 3.72,
+    "heldOutPerplexity": 346.61,
+    "trainPerplexity": 3.8,
     "split": "90/10",
-    "heldOutSegments": 8
+    "heldOutSegments": 9
   },
   "retrieval": {
-    "documents": 65,
-    "terms": 610,
+    "documents": 76,
+    "terms": 655,
     "conceptExpansions": 43
   },
   "space": {
     "nodes": 10,
     "edges": 10,
-    "explainedVariance": 0.2846
+    "explainedVariance": 0.2832
   },
-  "corpusWords": 2204
+  "corpusWords": 2465
 }
