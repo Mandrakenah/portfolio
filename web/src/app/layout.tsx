@@ -8,7 +8,7 @@ import { SmoothScroll } from '@/components/chrome/SmoothScroll'
 import './globals.css'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://arjunsaji.dev'),
+  metadataBase: new URL('https://arjun-saji.vercel.app'),
   title: {
     default: 'Arjun Saji — Full-Stack Engineer',
     template: '%s — Arjun Saji',
@@ -35,6 +35,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SmoothScroll />
         <Grain />
         <Cursor />
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[110] focus:rounded-lg focus:bg-volt focus:px-4 focus:py-2.5 focus:font-mono focus:text-[13px] focus:text-void"
+        >
+          Skip to content
+        </a>
         <Nav />
         {children}
       </body>

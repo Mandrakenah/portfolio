@@ -28,7 +28,7 @@ export function Experience() {
                   <p className="mt-1 text-[14px] text-mute">{r.title}</p>
                   <div className="mt-5 flex flex-wrap gap-1.5">
                     {r.stack.map((s) => (
-                      <span key={s} className="rounded-full border border-line px-2.5 py-0.5 font-mono text-[10px] text-faint">
+                      <span key={s} className="rounded-full border border-line px-2.5 py-0.5 font-mono text-[11px] text-faint">
                         {s}
                       </span>
                     ))}

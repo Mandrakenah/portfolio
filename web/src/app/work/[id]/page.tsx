@@ -25,10 +25,10 @@ export default async function ProjectPage({ params }: { params: Promise<{ id: st
   const next = projects[(idx + 1) % projects.length]
 
   return (
-    <main>
+    <main id="main">
       <article className="px-5 pt-36 md:px-10 md:pt-44">
         <div className="mx-auto max-w-[1000px]">
-          <Link href="/work" className="font-mono text-[11px] text-mute transition-colors hover:text-volt">
+          <Link href="/work" className="-mx-2 inline-block rounded px-2 py-2 font-mono text-[12px] text-mute transition-colors hover:text-volt">
             ← All work
           </Link>
 
@@ -56,7 +56,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ id: st
                 <Reveal key={m.label}>
                   <div>
                     <div className="font-mono text-[clamp(1.6rem,3.5vw,2.4rem)] leading-none text-volt">{m.value}</div>
-                    <div className="mt-2 font-mono text-[10px] uppercase tracking-wider text-faint">{m.label}</div>
+                    <div className="mt-2 font-mono text-[11px] uppercase tracking-wider text-faint">{m.label}</div>
                   </div>
                 </Reveal>
               ))}

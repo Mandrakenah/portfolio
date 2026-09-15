@@ -23,7 +23,7 @@ export function AdaptiveBanner() {
           exit={{ opacity: 0, y: -8 }}
           className="mb-8 flex flex-wrap items-center gap-x-3 gap-y-2 rounded-xl border border-volt/30 bg-volt/[0.06] px-4 py-3"
         >
-          <span className="font-mono text-[10px] uppercase tracking-wider text-volt">Adaptive</span>
+          <span className="font-mono text-[11px] uppercase tracking-wider text-volt">Adaptive</span>
           <p className="flex-1 text-[13px] text-mute">
             Reordered for <span className="text-bone">{intent.label}</span>
             {intent.matched.length > 0 && (

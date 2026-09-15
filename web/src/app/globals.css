@@ -9,15 +9,15 @@
   --color-line: #232838;
 
   --color-bone: #ECEEF4;
-  --color-mute: #7E8698;
-  --color-faint: #4A5164;
+  --color-mute: #98A1B3;
+  --color-faint: #6F7995;
 
   /* signature: electric lime + deep violet */
   --color-volt: #CCFF33;
   --color-volt-dim: #9BC41F;
-  --color-plasma: #6E4BFF;
+  --color-plasma: #8359FF;
   --color-plasma-dim: #4B32B8;
-  --color-ember: #FF5C3D;
+  --color-ember: #FF7A60;
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", monospace;
@@ -44,6 +44,13 @@
   }
 
   ::selection { background: var(--color-volt); color: #000; }
+
+  /* Keyboard focus must be obvious. :focus-visible keeps it off mouse clicks. */
+  :focus-visible {
+    outline: 2px solid var(--color-volt);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
 
   /* honour reduced-motion everywhere */
   @media (prefers-reduced-motion: reduce) {

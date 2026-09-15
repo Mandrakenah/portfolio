@@ -35,7 +35,7 @@ export function About() {
                     href="/Arjun-Saji-Resume.pdf"
                     target="_blank"
                     rel="noreferrer noopener"
-                    className="mt-2 inline-flex items-center gap-1.5 text-volt transition-opacity hover:opacity-70"
+                    className="-mx-1 mt-1.5 inline-flex items-center gap-1.5 rounded px-1 py-1.5 text-volt transition-opacity hover:opacity-70"
                   >
                     Download resume <span aria-hidden>↓</span>
                   </a>

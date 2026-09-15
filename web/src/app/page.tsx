@@ -8,7 +8,7 @@ import { Footer } from '@/components/chrome/Footer'
 
 export default function Home() {
   return (
-    <main>
+    <main id="main">
       <Hero />
       <About />
       <Work />

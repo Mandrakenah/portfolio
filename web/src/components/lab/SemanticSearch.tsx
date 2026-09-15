@@ -46,7 +46,7 @@ export function SemanticSearch() {
           </p>
         </div>
         {engine && (
-          <div className="font-mono text-[10px] leading-relaxed text-faint">
+          <div className="font-mono text-[11px] leading-relaxed text-faint">
             <div>{engine.size} documents · {engine.termCount} terms</div>
             <div>index {ms.toFixed(0)}ms · query {latency.toFixed(2)}ms</div>
           </div>
@@ -66,7 +66,7 @@ export function SemanticSearch() {
           <button
             key={e}
             onClick={() => setQ(e)}
-            className="rounded-full border border-line px-3 py-1 font-mono text-[11px] text-mute transition-colors hover:border-volt/50 hover:text-bone"
+            className="rounded-full border border-line px-3.5 py-2 font-mono text-[11px] text-mute transition-colors hover:border-volt/50 hover:text-bone"
           >
             {e}
           </button>
@@ -82,10 +82,10 @@ export function SemanticSearch() {
             const Body = (
               <>
                 <div className="mb-1.5 flex flex-wrap items-center gap-2">
-                  <span className={cn('rounded border px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider', KIND_STYLE[h.doc.sourceKind])}>
+                  <span className={cn('rounded border px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider', KIND_STYLE[h.doc.sourceKind])}>
                     {h.doc.sourceKind}
                   </span>
-                  <span className="font-mono text-[10px] text-mute">{h.doc.sourceLabel}</span>
+                  <span className="font-mono text-[11px] text-mute">{h.doc.sourceLabel}</span>
                   <span className="ml-auto flex items-center gap-2">
                     <span className="h-1 w-16 overflow-hidden rounded-full bg-elevated">
                       <motion.span
@@ -95,14 +95,14 @@ export function SemanticSearch() {
                         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                       />
                     </span>
-                    <span className="w-8 text-right font-mono text-[10px] text-faint">
+                    <span className="w-8 text-right font-mono text-[11px] text-faint">
                       {(h.strength * 100).toFixed(0)}
                     </span>
                   </span>
                 </div>
                 <p className="text-[13.5px] leading-relaxed text-bone">{h.doc.text}</p>
                 {h.matchedTerms.length > 0 && (
-                  <p className="mt-2 font-mono text-[10px] text-faint">
+                  <p className="mt-2 font-mono text-[11px] text-faint">
                     matched: {h.matchedTerms.slice(0, 6).join(' · ')}
                   </p>
                 )}

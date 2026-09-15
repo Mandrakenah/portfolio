@@ -35,7 +35,7 @@ export function Nav() {
       )}
     >
       <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-5 py-4 md:px-10">
-        <Link href="/" className="group flex items-center gap-2.5" aria-label="Arjun Saji, home">
+        <Link href="/" className="group -mx-1 flex items-center gap-2.5 rounded px-1 py-1.5" aria-label="Arjun Saji, home">
           <span className="grid h-7 w-7 place-items-center rounded-[7px] bg-volt font-mono text-[13px] font-bold text-void">
             A
           </span>
@@ -52,7 +52,7 @@ export function Nav() {
                 <Link
                   href={l.href}
                   className={cn(
-                    'relative rounded-full px-3.5 py-1.5 font-mono text-[12px] tracking-wide transition-colors',
+                    'relative rounded-full px-3.5 py-2.5 font-mono text-[12px] tracking-wide transition-colors',
                     active ? 'text-void' : 'text-mute hover:text-bone',
                   )}
                 >

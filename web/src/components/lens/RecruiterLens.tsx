@@ -52,7 +52,7 @@ function Gauge({ value }: { value: number }) {
         >
           {pct}<span className="text-[16px] text-mute">%</span>
         </motion.div>
-        <div className="mt-1 font-mono text-[9px] uppercase tracking-[0.16em] text-faint">coverage</div>
+        <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-faint">coverage</div>
       </div>
     </div>
   )
@@ -75,7 +75,7 @@ function RequirementRow({ r, i }: { r: Requirement; i: number }) {
       >
         <span className={cn('mt-1.5 h-2 w-2 shrink-0 rounded-full', v.bar)} />
         <span className="flex-1 text-[14px] leading-relaxed text-bone">{r.text}</span>
-        <span className={cn('shrink-0 rounded border px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider', v.ring, v.text)}>
+        <span className={cn('shrink-0 rounded border px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider', v.ring, v.text)}>
           {v.label}
         </span>
         <span className={cn('shrink-0 font-mono text-[11px] text-faint transition-transform', open && 'rotate-90')}>›</span>
@@ -109,7 +109,7 @@ function RequirementRow({ r, i }: { r: Requirement; i: number }) {
               )}
               {r.evidence.map((e) => (
                 <div key={e.doc.id} className="rounded-lg border border-line bg-ink/60 p-3.5">
-                  <p className="mb-1.5 font-mono text-[10px] uppercase tracking-wider text-volt">{e.doc.sourceLabel}</p>
+                  <p className="mb-1.5 font-mono text-[11px] uppercase tracking-wider text-volt">{e.doc.sourceLabel}</p>
                   <p className="text-[13px] leading-relaxed text-mute">{e.doc.text}</p>
                 </div>
               ))}
@@ -208,7 +208,7 @@ export function RecruiterLens() {
                     ([k, n]) => (
                       <div key={k}>
                         <div className={cn('font-mono text-[26px] leading-none', VERDICT[k].text)}>{n}</div>
-                        <div className="mt-1.5 font-mono text-[10px] uppercase tracking-wider text-faint">
+                        <div className="mt-1.5 font-mono text-[11px] uppercase tracking-wider text-faint">
                           {VERDICT[k].label}
                         </div>
                       </div>
@@ -222,9 +222,9 @@ export function RecruiterLens() {
                 </p>
                 {report.missingTech.length > 0 && (
                   <div className="flex flex-wrap items-center gap-2 border-t border-line pt-4">
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-faint">Not in my corpus</span>
+                    <span className="font-mono text-[11px] uppercase tracking-wider text-faint">Not in my corpus</span>
                     {report.missingTech.map((t) => (
-                      <span key={t} className="rounded-full border border-ember/40 bg-ember/10 px-2.5 py-0.5 font-mono text-[10px] text-ember">
+                      <span key={t} className="rounded-full border border-ember/40 bg-ember/10 px-2.5 py-0.5 font-mono text-[11px] text-ember">
                         {t}
                       </span>
                     ))}

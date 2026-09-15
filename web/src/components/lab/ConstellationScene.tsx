@@ -84,7 +84,7 @@ function Node({
         style={{ pointerEvents: 'none', transform: 'translateY(-26px)' }}
       >
         <span
-          className="whitespace-nowrap rounded px-1 py-0.5 font-mono text-[9px] tracking-tight transition-all duration-200"
+          className="whitespace-nowrap rounded px-1 py-0.5 font-mono text-[10px] tracking-tight transition-all duration-200"
           style={{
             color: active ? '#07080B' : '#8B93A5',
             background: active ? colour : 'rgba(7,8,11,0.72)',
@@ -130,9 +130,9 @@ export default function ConstellationScene({ nodes, edges }: { nodes: SpaceNode[
 
       {active && (
         <div className="pointer-events-none absolute bottom-4 left-4 max-w-[280px] rounded-xl border border-line bg-void/90 p-3.5 backdrop-blur">
-          <p className="font-mono text-[10px] uppercase tracking-wider text-volt">{active.kind}</p>
+          <p className="font-mono text-[11px] uppercase tracking-wider text-volt">{active.kind}</p>
           <p className="mt-1 text-[14px] text-bone">{active.label}</p>
-          <p className="mt-2 font-mono text-[10px] leading-relaxed text-faint">{active.tags.slice(0, 6).join(' · ')}</p>
+          <p className="mt-2 font-mono text-[11px] leading-relaxed text-faint">{active.tags.slice(0, 6).join(' · ')}</p>
         </div>
       )}
     </div>

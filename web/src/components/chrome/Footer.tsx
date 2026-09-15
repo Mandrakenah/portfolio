@@ -19,10 +19,10 @@ export function Footer() {
         <div className="mt-16 grid gap-10 border-t border-line pt-10 md:grid-cols-[1fr_auto] md:gap-20">
           <div className="space-y-6">
             <div className="space-y-1.5 font-mono text-[13px]">
-              <a href={`mailto:${profile.email}`} className="block text-bone transition-colors hover:text-volt">
+              <a href={`mailto:${profile.email}`} className="-mx-1 inline-block rounded px-1 py-1.5 text-bone transition-colors hover:text-volt">
                 {profile.email}
               </a>
-              <a href={`tel:${profile.phone.replace(/[^0-9+]/g, '')}`} className="block text-mute transition-colors hover:text-volt">
+              <a href={`tel:${profile.phone.replace(/[^0-9+]/g, '')}`} className="-mx-1 inline-block rounded px-1 py-1.5 text-mute transition-colors hover:text-volt">
                 {profile.phone}
               </a>
               <p className="text-faint">{profile.location}</p>
@@ -67,14 +67,14 @@ export function Footer() {
               ['/lens', 'Recruiter Lens'],
               ['/system', 'System'],
             ].map(([href, label]) => (
-              <Link key={href} href={href} className="text-mute transition-colors hover:text-volt">
+              <Link key={href} href={href} className="-mx-1 inline-block rounded px-1 py-2 text-mute transition-colors hover:text-volt">
                 {label}
               </Link>
             ))}
           </nav>
         </div>
 
-        <div className="mt-16 flex flex-col gap-2 border-t border-line pt-6 font-mono text-[10px] text-faint md:flex-row md:items-center md:justify-between">
+        <div className="mt-16 flex flex-col gap-2 border-t border-line pt-6 font-mono text-[11px] text-faint md:flex-row md:items-center md:justify-between">
           <p>© {new Date().getFullYear()} {profile.name}. Built with Next.js, and models trained from scratch.</p>
           <p>Every prediction on this site ran on your device.</p>
         </div>

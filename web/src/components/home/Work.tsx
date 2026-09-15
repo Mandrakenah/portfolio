@@ -67,7 +67,7 @@ export function Work() {
                     <h3 className="flex flex-wrap items-baseline gap-x-3 text-[clamp(1.4rem,3.2vw,2.4rem)] font-medium leading-tight tracking-[-0.025em] transition-colors group-hover:text-volt">
                       {p.name}
                       {p.status === 'live' && (
-                        <span className="rounded-full border border-volt/40 bg-volt/10 px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider text-volt">
+                        <span className="rounded-full border border-volt/40 bg-volt/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-volt">
                           live
                         </span>
                       )}
@@ -77,12 +77,12 @@ export function Work() {
 
                   <div className="flex flex-wrap gap-1.5 md:w-[38%] md:justify-end">
                     {p.stack.slice(0, 4).map((s) => (
-                      <span key={s} className="rounded-full border border-line px-2.5 py-0.5 font-mono text-[10px] text-mute">
+                      <span key={s} className="rounded-full border border-line px-2.5 py-0.5 font-mono text-[11px] text-mute">
                         {s}
                       </span>
                     ))}
                     {p.stack.length > 4 && (
-                      <span className="px-1 py-0.5 font-mono text-[10px] text-faint">+{p.stack.length - 4}</span>
+                      <span className="px-1 py-0.5 font-mono text-[11px] text-faint">+{p.stack.length - 4}</span>
                     )}
                   </div>
 

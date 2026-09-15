@@ -3,6 +3,7 @@ import { PredictorDemo } from '@/components/lab/PredictorDemo'
 import { SemanticSearch } from '@/components/lab/SemanticSearch'
 import { Constellation } from '@/components/lab/Constellation'
 import { Footer } from '@/components/chrome/Footer'
+import meta from '../../../public/models/meta.json'
 
 export const metadata: Metadata = {
   title: 'Lab',
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function LabPage() {
   return (
-    <main>
+    <main id="main">
       <section className="px-5 pb-16 pt-36 md:px-10 md:pb-20 md:pt-44">
         <div className="mx-auto max-w-[1100px]">
           <p className="mb-5 font-mono text-[11px] uppercase tracking-[0.25em] text-volt">The Lab</p>
@@ -23,8 +24,8 @@ export default function LabPage() {
           </h1>
           <p className="mt-7 max-w-xl text-[15px] leading-relaxed text-mute">
             Three pieces of machine learning, none of them an API call. A Python pipeline builds the
-            artifacts at deploy time; your browser loads about 145 KB and does the rest. Open the network
-            tab if you do not believe me.
+            artifacts at deploy time; your browser loads {meta.totalHuman} and does the rest. Open the
+            network tab if you do not believe me.
           </p>
         </div>
       </section>

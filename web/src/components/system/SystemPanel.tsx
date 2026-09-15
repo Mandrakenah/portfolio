@@ -116,7 +116,7 @@ export function SystemPanel() {
                   <span className="font-mono text-[11px] text-faint">{b.label}</span>
                   <span className="font-mono text-[12px] text-volt">{b.value}</span>
                 </div>
-                <p className="mt-0.5 font-mono text-[10px] text-faint/70">{b.note}</p>
+                <p className="mt-0.5 font-mono text-[11px] text-faint/70">{b.note}</p>
               </div>
             ))
           ) : (
@@ -175,7 +175,7 @@ export function SystemPanel() {
             <Row k="training tokens" v={meta.lm.tokensSeen.toLocaleString()} />
             <Row k="perplexity (train)" v={String(meta.lm.perplexityTrain)} />
             <Row k="perplexity (held out)" v={String(meta.lm.perplexityHeldOut)} />
-            <p className="mt-4 font-mono text-[10px] leading-relaxed text-faint">
+            <p className="mt-4 font-mono text-[11px] leading-relaxed text-faint">
               The gap between those two numbers is the honest cost of training a model on
               {' '}{meta.corpusWords.toLocaleString()} words. I am reporting it rather than the flattering one.
             </p>
@@ -188,7 +188,7 @@ export function SystemPanel() {
             <Row k="indexed terms" v={String(meta.retrieval.terms)} />
             <Row k="concept expansions" v={String(meta.retrieval.conceptExpansions)} />
             <Row k="typo correction" v="char 3-gram" />
-            <p className="mt-4 font-mono text-[10px] leading-relaxed text-faint">
+            <p className="mt-4 font-mono text-[11px] leading-relaxed text-faint">
               Chosen over embeddings deliberately: on 65 documents a curated concept map beats a small
               model, and costs the visitor nothing to download.
             </p>
@@ -201,7 +201,7 @@ export function SystemPanel() {
             <Row k="edges" v={String(meta.space.edges)} />
             <Row k="explained variance" v={`${(meta.space.explainedVariance * 100).toFixed(1)}%`} />
             <Row k="rendering" v="WebGL / three.js" />
-            <p className="mt-4 font-mono text-[10px] leading-relaxed text-faint">
+            <p className="mt-4 font-mono text-[11px] leading-relaxed text-faint">
               Three dimensions capture only part of the structure. That is a limitation of the projection,
               not a claim about the work.
             </p>

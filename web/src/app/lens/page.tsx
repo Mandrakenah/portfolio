@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function LensPage() {
   return (
-    <main>
+    <main id="main">
       <section className="px-5 pb-20 pt-36 md:px-10 md:pb-28 md:pt-44">
         <div className="mx-auto max-w-[1100px]">
           <p className="mb-5 font-mono text-[11px] uppercase tracking-[0.25em] text-volt">Recruiter Lens</p>

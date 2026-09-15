@@ -63,7 +63,7 @@ export function PredictorDemo({ compact = false }: { compact?: boolean }) {
           </p>
         </div>
         {model && (
-          <div className="font-mono text-[10px] leading-relaxed text-faint">
+          <div className="font-mono text-[11px] leading-relaxed text-faint">
             <div>{model.stats.vocabSize.toLocaleString()} vocab · {model.stats.trigramContexts.toLocaleString()} contexts</div>
             <div>loaded in {ms.toFixed(0)}ms · predict {latency.toFixed(2)}ms</div>
           </div>
@@ -93,7 +93,7 @@ export function PredictorDemo({ compact = false }: { compact?: boolean }) {
           <button
             key={s}
             onClick={() => setText(s + ' ')}
-            className="rounded-full border border-line px-3 py-1 font-mono text-[11px] text-mute transition-colors hover:border-volt/50 hover:text-bone"
+            className="rounded-full border border-line px-3.5 py-2 font-mono text-[11px] text-mute transition-colors hover:border-volt/50 hover:text-bone"
           >
             {s}…
           </button>
@@ -132,7 +132,7 @@ export function PredictorDemo({ compact = false }: { compact?: boolean }) {
                 <span className="w-11 shrink-0 text-right font-mono text-[11px] text-mute">
                   {(p.share * 100).toFixed(0)}%
                 </span>
-                <span className={cn('shrink-0 rounded border px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider', meta.cls)}>
+                <span className={cn('shrink-0 rounded border px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider', meta.cls)}>
                   {meta.label}
                 </span>
               </motion.button>

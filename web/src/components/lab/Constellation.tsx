@@ -40,7 +40,7 @@ export function Constellation() {
           work because the language of the two is genuinely different. Drag to orbit, click a project to open it.
         </p>
         {data && (
-          <p className="mt-3 font-mono text-[10px] text-faint">
+          <p className="mt-3 font-mono text-[11px] text-faint">
             {data.nodes.length} nodes · {data.edges.length} similarity edges ·{' '}
             <span className="text-volt">■</span> project <span className="ml-2 text-plasma">■</span> role
           </p>

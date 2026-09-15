@@ -51,7 +51,7 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="mb-6 flex flex-wrap items-center gap-x-3 gap-y-1.5 font-mono text-[10px] tracking-[0.14em] text-mute uppercase md:mb-7 md:text-[12px] md:tracking-[0.18em]"
+          className="mb-6 flex flex-wrap items-center gap-x-3 gap-y-1.5 font-mono text-[11px] tracking-[0.14em] text-mute uppercase md:mb-7 md:text-[12px] md:tracking-[0.18em]"
         >
           <span className="flex items-center gap-2">
             <span className="relative flex h-1.5 w-1.5">
@@ -119,7 +119,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.4, duration: 0.8 }}
-        className="absolute bottom-7 left-1/2 hidden -translate-x-1/2 font-mono text-[10px] tracking-[0.3em] text-faint uppercase md:block"
+        className="absolute bottom-7 left-1/2 hidden -translate-x-1/2 font-mono text-[11px] tracking-[0.3em] text-faint uppercase md:block"
       >
         <motion.span
           animate={{ y: [0, 7, 0] }}
