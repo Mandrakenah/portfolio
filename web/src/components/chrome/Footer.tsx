@@ -17,14 +17,47 @@ export function Footer() {
         </a>
 
         <div className="mt-16 grid gap-10 border-t border-line pt-10 md:grid-cols-[1fr_auto] md:gap-20">
-          <div className="space-y-1.5 font-mono text-[13px]">
-            <a href={`mailto:${profile.email}`} className="block text-bone transition-colors hover:text-volt">
-              {profile.email}
-            </a>
-            <a href={`tel:${profile.phone.replace(/[^0-9+]/g, '')}`} className="block text-mute transition-colors hover:text-volt">
-              {profile.phone}
-            </a>
-            <p className="text-faint">{profile.location}</p>
+          <div className="space-y-6">
+            <div className="space-y-1.5 font-mono text-[13px]">
+              <a href={`mailto:${profile.email}`} className="block text-bone transition-colors hover:text-volt">
+                {profile.email}
+              </a>
+              <a href={`tel:${profile.phone.replace(/[^0-9+]/g, '')}`} className="block text-mute transition-colors hover:text-volt">
+                {profile.phone}
+              </a>
+              <p className="text-faint">{profile.location}</p>
+            </div>
+
+            <ul className="flex flex-wrap gap-2.5">
+              <li>
+                <a
+                  href="/Arjun-Saji-Resume.pdf"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="group inline-flex items-center gap-2 rounded-full bg-volt px-4 py-2 font-mono text-[12px] font-medium text-void transition-opacity hover:opacity-90"
+                >
+                  Resume
+                  <span aria-hidden className="transition-transform group-hover:translate-y-0.5">↓</span>
+                </a>
+              </li>
+              {profile.socials
+                .filter((s) => s.label !== 'Email')
+                .map((s) => (
+                  <li key={s.label}>
+                    <a
+                      href={s.href}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="group inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 font-mono text-[12px] text-bone transition-colors hover:border-volt hover:text-volt"
+                    >
+                      {s.label}
+                      <span className="text-faint transition-all group-hover:translate-x-0.5 group-hover:text-volt">
+                        ↗
+                      </span>
+                    </a>
+                  </li>
+                ))}
+            </ul>
           </div>
 
           <nav className="flex flex-wrap gap-x-7 gap-y-2 font-mono text-[12px] md:justify-end">

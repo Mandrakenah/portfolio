@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { Reveal, RevealWords } from '@/components/motion/Reveal'
 import { profile } from '@/content/profile'
 
@@ -16,8 +17,34 @@ export function About() {
             <h2 className="text-[clamp(1.9rem,4.5vw,3.4rem)] font-medium leading-[1.03] tracking-[-0.03em]">
               <RevealWords text="A kitchen taught me to work under load." />
             </h2>
+            <Reveal delay={0.1}>
+              <div className="mt-9 flex items-center gap-5">
+                <Image
+                  src="/portrait.webp"
+                  alt={`${profile.name}, ${profile.role}`}
+                  width={400}
+                  height={400}
+                  sizes="112px"
+                  priority={false}
+                  className="h-[92px] w-[92px] shrink-0 rounded-xl object-cover ring-1 ring-line md:h-28 md:w-28"
+                />
+                <div className="font-mono text-[11px] leading-relaxed text-faint">
+                  <p className="text-bone">{profile.name}</p>
+                  <p>{profile.role}</p>
+                  <a
+                    href="/Arjun-Saji-Resume.pdf"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="mt-2 inline-flex items-center gap-1.5 text-volt transition-opacity hover:opacity-70"
+                  >
+                    Download resume <span aria-hidden>↓</span>
+                  </a>
+                </div>
+              </div>
+            </Reveal>
+
             <Reveal delay={0.15}>
-              <dl className="mt-10 space-y-4 border-t border-line pt-8 font-mono text-[12px]">
+              <dl className="mt-9 space-y-4 border-t border-line pt-8 font-mono text-[12px]">
                 {[
                   ['Program', profile.education.credential.split('—')[0].trim()],
                   ['Stream', 'Artificial Intelligence'],
