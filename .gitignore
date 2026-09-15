@@ -13,3 +13,5 @@ venv/
 .vercel
 /data/corpus.json
 *.tsbuildinfo
+ml/corpus/
+ml/checkpoints/

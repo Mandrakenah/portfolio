@@ -33,11 +33,19 @@ export function Constellation() {
   return (
     <div className="overflow-hidden rounded-2xl border border-line bg-ink/60 backdrop-blur">
       <div className="border-b border-line p-5 md:p-7">
-        <h3 className="font-mono text-[11px] uppercase tracking-[0.2em] text-volt">Semantic space</h3>
+        <h3 className="font-mono text-[11px] uppercase tracking-[0.2em] text-volt">
+          A map of my work, drawn by similarity
+        </h3>
         <p className="mt-1.5 max-w-xl text-[13px] leading-relaxed text-mute">
-          Every project and role, embedded as a TF-IDF vector and projected into three dimensions.
-          Distance here is semantic distance — the machine learning work clusters away from the product
-          work because the language of the two is genuinely different. Drag to orbit, click a project to open it.
+          Each dot is a project or a job. <span className="text-bone">Things that are alike sit close
+          together</span> — nothing here was placed by hand. The two machine-learning projects drift
+          toward each other; the apps I built cluster somewhere else entirely; the lines connect the
+          pairs that came out most similar.
+        </p>
+        <p className="mt-2 max-w-xl text-[13px] leading-relaxed text-faint">
+          How: every project is turned into a list of numbers describing which words it uses, those
+          lists get squashed down to three dimensions so they can be drawn, and then the dots are
+          nudged apart just enough to read the labels. Drag to spin it, click a dot to open the project.
         </p>
         {data && (
           <p className="mt-3 font-mono text-[11px] text-faint">

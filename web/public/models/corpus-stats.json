@@ -1,0 +1,28 @@
+{
+  "words": 8693565,
+  "files": 42,
+  "sources": 4,
+  "technicalShare": 11,
+  "breakdown": [
+    {
+      "label": "NLTK research corpora (news, forums, reviews, chat)",
+      "words": 4004729,
+      "share": 46.1
+    },
+    {
+      "label": "public-domain books (Project Gutenberg)",
+      "words": 3618515,
+      "share": 41.6
+    },
+    {
+      "label": "software documentation (MIT/Apache npm packages)",
+      "words": 957344,
+      "share": 11.0
+    },
+    {
+      "label": "conversational text",
+      "words": 112977,
+      "share": 1.3
+    }
+  ]
+}

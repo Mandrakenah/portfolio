@@ -2,6 +2,12 @@
 $ErrorActionPreference = "Stop"
 Set-Location $PSScriptRoot
 
+# Files removed upstream that a plain sync cannot delete for you.
+$stale = @("web\src\components\lab\PredictorDemo.tsx")
+foreach ($f in $stale) {
+    if (Test-Path $f) { Remove-Item -Force $f; Write-Host "removed stale $f" -ForegroundColor DarkGray }
+}
+
 Write-Host ""
 Write-Host "Committing and pushing..." -ForegroundColor Cyan
 git add -A

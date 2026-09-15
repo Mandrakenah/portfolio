@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { PredictorDemo } from '@/components/lab/PredictorDemo'
+import { SmartCompose } from '@/components/lab/SmartCompose'
 import { SemanticSearch } from '@/components/lab/SemanticSearch'
 import { Constellation } from '@/components/lab/Constellation'
 import { Footer } from '@/components/chrome/Footer'
@@ -24,15 +24,16 @@ export default function LabPage() {
           </h1>
           <p className="mt-7 max-w-xl text-[15px] leading-relaxed text-mute">
             Three pieces of machine learning, none of them an API call. A Python pipeline builds the
-            artifacts at deploy time; your browser loads {meta.totalHuman} and does the rest. Open the
-            network tab if you do not believe me.
+            Nothing here is an API call. The transformer below I designed and trained myself, and the
+            code that runs it in your browser is hand-written too — no ONNX runtime, no borrowed model.
+            Open the network tab if you do not believe me.
           </p>
         </div>
       </section>
 
       <section className="px-5 pb-24 md:px-10 md:pb-32">
         <div className="mx-auto grid max-w-[1100px] gap-6">
-          <PredictorDemo />
+          <SmartCompose />
           <SemanticSearch />
           <Constellation />
         </div>

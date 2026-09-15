@@ -78,6 +78,41 @@ export class Predictor {
     return top.map((x) => ({ ...x, share: x.p / sum }))
   }
 
+  /**
+   * The Smart Compose primitive: given what has been typed, return the text
+   * that should appear as ghost continuation — nothing if the model is not
+   * confident, because a wrong suggestion is worse than none.
+   */
+  suggest(text: string, maxWords = 5, minConfidence = 0.18): string {
+    if (!text.trim()) return ''
+    const midWord = /[A-Za-z0-9'\-.]$/.test(text)
+
+    // Finishing the current word — but only when it is not already a word.
+    // "I would like to" ends in a letter, yet the user wants the next word,
+    // not "too". Completing a complete word is the wrong mode.
+    const partial = (text.match(/([A-Za-z0-9'\-.]*)$/) ?? ['', ''])[1].toLowerCase()
+    if (midWord && partial.length >= 2 && !this.idx.has(partial)) {
+      const [best] = this.predict(text, 1)
+      if (!best || best.share < minConfidence) return ''
+      return best.word.startsWith(partial) ? best.word.slice(partial.length) : ''
+    }
+    if (midWord && !this.idx.has(partial)) return '' 
+
+    // continuing the sentence
+    const out: string[] = []
+    let cursor = text
+    for (let i = 0; i < maxWords; i++) {
+      const [best] = this.predict(cursor.endsWith(' ') ? cursor : cursor + ' ', 1)
+      // the bar drops after the first word: momentum is allowed, a bad start is not
+      if (!best || best.share < (i === 0 ? minConfidence : 0.12)) break
+      if (!/[a-z0-9]/i.test(best.word)) break
+      out.push(best.word)
+      cursor = (cursor.endsWith(' ') ? cursor : cursor + ' ') + best.word
+    }
+    if (!out.length) return ''
+    return (text.endsWith(' ') ? '' : ' ') + out.join(' ')
+  }
+
   /** Continue the text by n words, always taking the most likely path. */
   extend(text: string, n = 8): string {
     let cur = text

@@ -1,0 +1,9 @@
+{
+  "trigramPerplexity": 352.4,
+  "transformerPerplexity": 180.6,
+  "improvementPct": 48.8,
+  "heldOutSentences": 4000,
+  "trigramContext": 2,
+  "transformerContext": 64,
+  "leakFree": true
+}

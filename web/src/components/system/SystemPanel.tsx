@@ -5,6 +5,7 @@ import { motion } from 'motion/react'
 import { Predictor } from '@/lib/ml/predictor'
 import { SearchEngine } from '@/lib/ml/search'
 import { formatBytes } from '@/lib/utils'
+import corpus from '../../../public/models/corpus-stats.json'
 
 type Meta = {
   builtAt: string
@@ -168,7 +169,7 @@ export function SystemPanel() {
       {meta && (
         <div className="grid gap-6 md:grid-cols-3">
           <div className="rounded-2xl border border-line bg-ink/60 p-6 backdrop-blur">
-            <h3 className="mb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-volt">Language model</h3>
+            <h3 className="mb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-volt">Site-content model</h3>
             <Row k="type" v="Kneser-Ney trigram" />
             <Row k="vocabulary" v={meta.lm.vocabSize.toLocaleString()} />
             <Row k="trigram contexts" v={meta.lm.trigramContexts.toLocaleString()} />
@@ -176,8 +177,11 @@ export function SystemPanel() {
             <Row k="perplexity (train)" v={String(meta.lm.perplexityTrain)} />
             <Row k="perplexity (held out)" v={String(meta.lm.perplexityHeldOut)} />
             <p className="mt-4 font-mono text-[11px] leading-relaxed text-faint">
-              The gap between those two numbers is the honest cost of training a model on
-              {' '}{meta.corpusWords.toLocaleString()} words. I am reporting it rather than the flattering one.
+              A separate, tiny model over the {meta.corpusWords.toLocaleString()} words of writing on this
+              site — it powers the search hints, not the typing predictions. The gap between those two
+              numbers is the honest cost of training on that little text. I am reporting it rather than
+              the flattering one. The models that predict your typing are trained on the
+              {' '}{(corpus.words / 1e6).toFixed(2)}M-word corpus described below.
             </p>
           </div>
 
@@ -189,7 +193,7 @@ export function SystemPanel() {
             <Row k="concept expansions" v={String(meta.retrieval.conceptExpansions)} />
             <Row k="typo correction" v="char 3-gram" />
             <p className="mt-4 font-mono text-[11px] leading-relaxed text-faint">
-              Chosen over embeddings deliberately: on 65 documents a curated concept map beats a small
+              Chosen over embeddings deliberately: on {meta.retrieval.documents} documents a curated concept map beats a small
               model, and costs the visitor nothing to download.
             </p>
           </div>

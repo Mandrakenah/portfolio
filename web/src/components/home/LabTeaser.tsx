@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { Reveal, RevealWords } from '@/components/motion/Reveal'
-import { PredictorDemo } from '@/components/lab/PredictorDemo'
+import { SmartCompose } from '@/components/lab/SmartCompose'
 
 export function LabTeaser() {
   return (
@@ -45,7 +45,7 @@ export function LabTeaser() {
           </div>
 
           <Reveal delay={0.1} y={36}>
-            <PredictorDemo compact />
+            <SmartCompose compact />
           </Reveal>
         </div>
       </div>
