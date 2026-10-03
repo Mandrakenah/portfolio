@@ -1,95 +1,95 @@
 {
  "what do you": {
   "ids": [
-   56,
-   67,
-   16
+   64,
+   74,
+   20
   ],
   "topWords": [
-   "know",
+   "think",
    "want",
    "mean",
-   "?",
-   "think",
-   "have",
+   "know",
+   "</s>",
+   "say",
    "do",
-   "say"
+   "suppose"
   ],
-  "logitMean": -2.6365
+  "logitMean": -3.6311
  },
  "I would like to": {
   "ids": [
-   11,
-   57,
-   64,
-   6
+   18,
+   58,
+   76,
+   7
   ],
   "topWords": [
-   "be",
    "see",
-   "<unk>",
-   "do",
+   "</s>",
+   "have",
+   "be",
    "go",
-   "say",
-   "get",
-   "have"
+   "know",
+   "do",
+   "say"
   ],
-  "logitMean": -2.3122
+  "logitMean": -3.3228
  },
  "thank you for your": {
   "ids": [
-   1235,
-   16,
-   14,
-   60
+   1417,
+   20,
+   12,
+   55
   ],
   "topWords": [
+   "</s>",
+   "kindness",
+   "sake",
    "<unk>",
    "own",
-   "next",
-   "application",
-   "father",
-   "friend",
-   "mother",
-   "dear"
+   "good",
+   "grace",
+   "sakes"
   ],
-  "logitMean": -1.786
+  "logitMean": -2.6072
  },
  "the component is": {
   "ids": [
-   4,
-   175,
-   10
+   2,
+   577,
+   11
   ],
   "topWords": [
-   "used",
-   "shared",
-   "a",
-   "called",
-   "available",
    "not",
+   "a",
+   "used",
    "the",
-   "enabled"
+   "<unk>",
+   "rendered",
+   "defined",
+   "created"
   ],
-  "logitMean": -2.0651
+  "logitMean": -3.744
  },
  "he looked at the": {
   "ids": [
-   15,
-   252,
-   27,
-   4
+   17,
+   232,
+   30,
+   2
   ],
   "topWords": [
+   "</s>",
    "<unk>",
+   "man",
+   "girl",
+   "little",
    "door",
-   "same",
-   "end",
-   "time",
-   "room",
    "window",
-   "first"
+   "other"
   ],
-  "logitMean": -1.2352
+  "logitMean": -1.8882
  }
 }

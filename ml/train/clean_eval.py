@@ -8,6 +8,10 @@ was meaningless and so was the comparison.
 
 This builds a validation set of sentences that occur exactly once in the whole
 corpus, so nothing in it can have been memorised, and scores both models there.
+
+The corpus is now 34M words, so sentences are counted by hash in a streaming
+pass rather than held in memory as token tuples — the straightforward version
+needs several gigabytes and dies on a small box.
 """
 from __future__ import annotations
 import math, re, sys
@@ -24,47 +28,56 @@ CKPT = ROOT / "ml" / "checkpoints" / "tinygpt.pt"
 D = 0.75
 
 
-def sentences():
-    out = []
+def stream_sentences():
+    """Yield (token tuple) per sentence without holding the corpus in memory."""
     for f in sorted(CORPUS.glob("*.txt")):
         if f.stat().st_size < 1000:
             continue
-        raw = f.read_text(encoding="utf-8", errors="ignore")
-        if "PROJECT GUTENBERG" in raw.upper():
-            raw = clean(raw)
-        for s in re.split(r"(?<=[.!?])\s+", raw.lower()):
-            t = TOKEN.findall(s)
-            if 3 <= len(t) <= 40:
-                out.append(tuple(t))
-    return out
+        with f.open(encoding="utf-8", errors="ignore") as fh:
+            for line in fh:
+                if "PROJECT GUTENBERG" in line.upper():
+                    continue
+                for s in re.split(r"(?<=[.!?])\s+", line.lower()):
+                    t = TOKEN.findall(s)
+                    if 3 <= len(t) <= 40:
+                        yield tuple(t)
 
 
 def main():
-    sents = sentences()
-    counts = Counter(sents)
-    unique = [s for s in sents if counts[s] == 1]
-    dupes = len(sents) - len(unique)
-    print(f"sentences: {len(sents):,} total · {dupes:,} appear more than once "
-          f"({dupes/len(sents):.1%}) · {len(unique):,} occur exactly once")
+    # Pass one: count by hash. Storing 34M word-strings in tuples needs several
+    # gigabytes; 8-byte hashes need a fraction of that.
+    seen: Counter[int] = Counter()
+    total = 0
+    for s in stream_sentences():
+        seen[hash(s)] += 1
+        total += 1
+    uniq = sum(1 for c in seen.values() if c == 1)
+    dupes = total - uniq
+    print(f"sentences: {total:,} total · {dupes:,} appear more than once "
+          f"({dupes/total:.1%}) · {uniq:,} occur exactly once")
 
     ck = torch.load(CKPT, map_location="cpu", weights_only=False)
     vocab = ck["vocab"]; idx = {w: i for i, w in enumerate(vocab)}
 
-    # validation = the last 4,000 sentences that occur exactly once anywhere.
-    # Nothing here can have been memorised from the training half.
-    val_sents = unique[-4000:]
-    val_set = set(val_sents)
-    train_sents = [s for s in sents if s not in val_set]
-    print(f"clean split: {len(train_sents):,} train · {len(val_sents):,} held out (all unique)\n")
+    # Validation = the last 4,000 sentences that occur exactly once anywhere, so
+    # nothing in it can have been memorised. Pass two encodes both halves.
+    VAL_N = 4000
+    val_hashes, val_sents = set(), []
+    for s in stream_sentences():                       # collect the tail first
+        if seen[hash(s)] == 1:
+            val_sents.append(s)
+            if len(val_sents) > VAL_N:
+                val_sents.pop(0)
+    val_hashes = {hash(s) for s in val_sents}
 
-    def ids(ss):
-        out = []
-        for s in ss:
-            out.extend(idx.get(t, 0) for t in s)
-            out.append(idx.get("</s>", 1))
-        return out
-
-    tr, va = ids(train_sents), ids(val_sents)
+    tr, va, n_train = [], [], 0
+    for s in stream_sentences():
+        enc = [idx.get(t, 0) for t in s] + [idx.get("</s>", 1)]
+        if hash(s) in val_hashes:
+            va.extend(enc)
+        else:
+            tr.extend(enc); n_train += 1
+    print(f"clean split: {n_train:,} train · {len(val_sents):,} held out (all unique)\n")
 
     # ── trigram, trained only on the clean training half ──
     uni, bi, tri = Counter(), defaultdict(Counter), defaultdict(Counter)
@@ -110,11 +123,24 @@ def main():
     print(f"{'model':<28}{'perplexity':>12}   (lower is better)")
     print("-" * 52)
     print(f"{'Kneser-Ney trigram':<28}{kn_ppl:>12.1f}")
-    print(f"{'transformer (5.7M params)':<28}{gpt_ppl:>12.1f}")
+    size = f"transformer ({ck['params']/1e6:.1f}M params)"
+    print(f"{size:<28}{gpt_ppl:>12.1f}")
     better = (kn_ppl - gpt_ppl) / kn_ppl * 100
     print(f"\ntransformer is {better:.1f}% better on leak-free held-out text")
 
     import json
+    # The manifest's own number comes from training's positional split. This one
+    # is measured on sentences that occur exactly once and scored identically for
+    # both models, so it is the one the site should quote — carrying two
+    # different "held-out perplexity" figures side by side just confuses.
+    man_path = ROOT / "web" / "public" / "models" / "tinygpt.json"
+    man = json.loads(man_path.read_text())
+    man["training"]["valPerplexityTrainSplit"] = man["training"]["valPerplexity"]
+    man["training"]["valPerplexity"] = round(gpt_ppl, 1)
+    man["training"]["evaluation"] = (
+        "leak-free: held-out sentences that occur exactly once in the corpus")
+    man_path.write_text(json.dumps(man, separators=(",", ":")))
+
     (ROOT / "web" / "public" / "models" / "comparison.json").write_text(json.dumps({
         "trigramPerplexity": round(kn_ppl, 1),
         "transformerPerplexity": round(gpt_ppl, 1),

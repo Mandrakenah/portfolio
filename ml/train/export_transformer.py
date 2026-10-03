@@ -88,6 +88,28 @@ def main() -> None:
     }
     (OUT / "tinygpt.json").write_text(json.dumps(manifest, separators=(",", ":")))
 
+    # Reference predictions for the browser-side parity test. Generated here,
+    # from the same checkpoint, so the float32 numbers the TypeScript int8
+    # inference is checked against can never drift out of sync with the weights
+    # that were actually shipped.
+    import sys
+    sys.path.insert(0, str(Path(__file__).parent))
+    from transformer import TinyGPT, TOKEN                      # noqa: E402
+    model = TinyGPT(); model.load_state_dict(sd); model.eval()
+    idx = {w: i for i, w in enumerate(vocab)}
+    ref = {}
+    for text in ["what do you", "I would like to", "thank you for your",
+                 "the component is", "he looked at the"]:
+        ids = [idx.get(t, 0) for t in TOKEN.findall(text.lower())]
+        with torch.no_grad():
+            logits = model(torch.tensor([ids]))[0, -1]
+        top = torch.topk(logits, 8).indices.tolist()
+        ref[text] = {"ids": ids,
+                     "topWords": [vocab[i] for i in top],
+                     "logitMean": round(logits.mean().item(), 4)}
+    (ROOT / "web" / "scripts" / "reference.json").write_text(json.dumps(ref, indent=1))
+    print(f"reference     : {len(ref)} prompts → web/scripts/reference.json")
+
     mb_bin = (OUT / "tinygpt.bin").stat().st_size / 1_048_576
     mb_man = (OUT / "tinygpt.json").stat().st_size / 1_048_576
     print(f"params        : {ck['params']/1e6:.2f}M")

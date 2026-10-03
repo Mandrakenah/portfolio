@@ -27,7 +27,7 @@ const PROMPTS = [
 ]
 
 const MODELS: { id: ModelId; name: string; size: string; note: string }[] = [
-  { id: 'neural', name: 'Transformer', size: '5.5 MB', note: 'trained from scratch · 5.7M params' },
+  { id: 'neural', name: 'Transformer', size: '12.0 MB', note: 'trained from scratch · 12.5M params' },
   { id: 'general', name: 'Trigram', size: '3.1 MB', note: 'statistical baseline · sees 2 words' },
 ]
 
