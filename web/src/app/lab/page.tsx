@@ -23,9 +23,9 @@ export default function LabPage() {
             <span className="text-mute">running on your device.</span>
           </h1>
           <p className="mt-7 max-w-xl text-[15px] leading-relaxed text-mute">
-            Three pieces of machine learning, none of them an API call. A Python pipeline builds the
-            Nothing here is an API call. The transformer below I designed and trained myself, and the
-            code that runs it in your browser is hand-written too — no ONNX runtime, no borrowed model.
+            Three pieces of machine learning, none of them an API call. Prediction, search and the
+            map below all run on your device — the transformer I designed and trained myself, and the
+            code that runs it in your browser is hand-written too: no ONNX runtime, no borrowed model.
             Open the network tab if you do not believe me.
           </p>
         </div>
